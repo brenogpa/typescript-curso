@@ -1,3 +1,4 @@
+import { logarTempoDeExecucao } from '../decorators/logar-tempo-de-execucao.js';
 import { DiasDaSemana } from '../enums/dias-da-semana.js';
 import { Negociacao } from '../models/negociacao.js';
 import { Negociacoes } from '../models/negociacoes.js';
@@ -19,6 +20,7 @@ export class NegociacaoController {
         this.negociacoesView.update(this.negociacoes);
     }
 
+    @logarTempoDeExecucao()
     public adiciona(): void {
         /*
             Zé, você já viu isso?
@@ -28,7 +30,7 @@ export class NegociacaoController {
             this.inputQuantidade.value,
             this.inputValor.value
         );
-     
+
         if (!this.ehDiaUtil(negociacao.data)) {
             this.mensagemView
                 .update('Apenas negociações em dias úteis são aceitas');
